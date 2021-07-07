@@ -8,8 +8,8 @@ namespace CardGame
     class Program
     {
         private static readonly ICardGameControllerFactory _cardGameFactory;
-        private const int _deckSize = 12;
-        private const int numOfPlayers = 4; 
+        private const int _deckSize = 40;
+        private const int numOfPlayers = 2; 
 
         static Program()
         {
