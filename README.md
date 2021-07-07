@@ -15,7 +15,7 @@ Card Game currently designed for 2 players. In this game each player gets a 20 c
 
 ## Tests
 
-Covered all the Test scenarios given in the assignment and added them under respective components.
+Covered all the Test scenarios given in the assignment and segregated them into respective test components.
 
 - PlayerTests 
   - What happens if player tries to draws from empty draw pile
