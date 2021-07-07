@@ -1,13 +1,13 @@
 # Card Game
 
-Card Game currently designed for 2 players. In this game each player gets a 20 cards from a shuffled deck of 40 cards. Then both players pick the top card from their draw pile and throw them on board. The player whose card is having greater value wins the round and takes all cards from the board and puts them in his discard pile. For any player, If there are no more cards in the draw pile, then shuffle the player's discard pile and use those cards as the new draw pile. Once a player has no cards in either their draw or discard pile, that player loses.
+Card Game currently designed for 2 players. In this game each player gets a 20 cards from a shuffled deck of 40 cards (Deck size can be configured). Then both players pick the top card from their draw pile and throw them on board. The player whose card is having greater value wins the round and takes all cards from the board and puts them in his discard pile. For any player, If there are no more cards in the draw pile, then shuffle the player's discard pile and use those cards as the new draw pile. Once a player has no cards in either their draw or discard pile, that player loses.
 
 ## Important Points To Consider
 
-- The deck size should be configured only to a value that is multiple of 4, like 4, 8, 12, 16 etc.
+- The deck size value should be configured in multiples of 4, like 4, 8, 12, 16 etc.
 - Currenly this game is compatible to be played with only 2 players. We can extend to multiplayer functionality later.
-- Deck Shuffle function is using **Fisher yates Shuffle Algorithm**
-- After each round game controller will prompt a message Press Enter to continue to next round, or type 'exit' if you want to quit. You may press enter to proceed to next round, or type exit to quit the game.
+- Deck Shuffle function is using **Fisher Yates Shuffle Algorithm**
+- After each round game controller will prompt a message 'Press Enter to continue to next round, or type 'exit' if you want to quit'. You may press enter to proceed to next round, or type exit to quit the game.
 
 ## Main Components
 - Program.cs : Main entry point of console application
@@ -17,7 +17,7 @@ Card Game currently designed for 2 players. In this game each player gets a 20 c
 - Deck : Responsible for maintaning complete deck state (List<Card>). It has configurable deck size and has behaviour to Shuffle Shuffle deck and Remove and Get Half of the cards from deck to be given to each player. 
 - Player : Responsible for maintaining player state (Name, Draw pile, Discard Pile). Player can TryDrawCard from his pile based on game logic. It can also take cards from GameController before the game begins. 
 - Utility.ListExtensions : Added extension to Shuffle an IList Collection using **Fisher yates Shuffle Algorithm**.
-- Factories : Responsible for creating objects for different components 
+- Factories : Responsible for creating objects for different components.
 - Interfaces : Holds behaviour spec for different components.
 
 ## Tests
