@@ -8,6 +8,7 @@ Card Game currently designed for 2 players. In this game each player gets a 20 c
 - Currenly this game is compatible to be played with only 2 players. We can extend to multiplayer functionality later.
 - Deck Shuffle function is using **Fisher Yates Shuffle Algorithm**
 - After each round game controller will prompt a message 'Press Enter to continue to next round, or type 'exit' if you want to quit'. You may press enter to proceed to next round, or type exit to quit the game.
+- Quick Tip : If someone wants to check the functionality quickly, just set the deck size in Program.cs file to something like 12 or 8 and then run the program.
 
 ## Main Components
 - Program.cs : Main entry point of console application
