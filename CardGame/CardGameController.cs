@@ -21,65 +21,73 @@ namespace CardGame
             _numberOfPlayers = numOfPlayers;
             _commandLineIO = commandLineIO;
         }
-        
+
         /// <summary>
         /// Initialize game for only two players
         /// </summary>
         /// <param name="player1Name"></param>
         /// <param name="player2Name"></param>
-        public void Start(string player1Name, string player2Name)
+        public void Start(List<string> playerNames)
         {
-            var player1 =  _playerFactory.Create(player1Name);
-            player1.AssignCards(_deck.GetHalfDeck().ToList());
+            List<IPlayer> players = new List<IPlayer>();
 
-            var player2 = _playerFactory.Create(player2Name);
-            player2.AssignCards(_deck.GetHalfDeck().ToList());
+            playerNames.ForEach(playerName =>
+            {
+                var player = _playerFactory.Create(playerName);
+                player.AssignCards(_deck.GetCardsForPlayer().ToList());
+                players.Add(player);
+            });
 
             _commandLineIO.WriteIntroMessage();
-
-            if(player1 != null && player2 != null)
-            {
-                BeginGame(player1, player2);
-            }
-
+            BeginGame(players);
             _commandLineIO.WriteExitMessage();
         }
 
         /// <summary>
-        /// Begin game for only two players
+        /// Begin game, currently taking into consideration only first 2 players are playing
         /// </summary>
-        private void BeginGame(IPlayer player1, IPlayer player2)
+        /// <param name="players"></param>
+        private void BeginGame(List<IPlayer> players)
         {
             //cards that are there on the board to be picked by the winner
             var boardCards = new List<Card>();
+            
+            //taking first two players only for now
+            var player1 = players[0];
+            var player2 = players[1];
+            var playersInGame = new List<IPlayer> { player1, player2 };
 
             while (true)
             {
-                if (player1.TryDrawCard(out var p1Card))
+                player1.TryDrawCard();
+                player2.TryDrawCard();
+
+                //both players have cards
+                if(player1.LastDrawnCard != null && player2.LastDrawnCard != null)
                 {
-                    if (player2.TryDrawCard(out var p2Card))
+                    boardCards.AddRange(new List<Card> { player1.LastDrawnCard, player2.LastDrawnCard });
+                    var winningPlayer = GetWiningPlayer(playersInGame);
+
+                    //no draw, hence cards will remain on board
+                    if (winningPlayer != null)
                     {
-                        boardCards.AddRange(new List<Card> { p1Card, p2Card });
-                        var winningPlayer = GetWiningPlayer(player1, player2);
-                        //round is not draw
-                        if (winningPlayer != null)
-                        {
-                            winningPlayer.AddCardsToDiscardPile(boardCards);
-                            boardCards.Clear();
-                        }
-                        _commandLineIO.WriteRoundResult(player1, player2, winningPlayer);
+                        winningPlayer.AddCardsToDiscardPile(boardCards);
+                        boardCards.Clear();
                     }
-                    else
-                    {
-                        //player 1 won the game
-                        _commandLineIO.WriteFinalResult(player1.Name);
-                        break;
-                    }
+                    _commandLineIO.WriteRoundResult(playersInGame, winningPlayer);
                 }
+                //player 1 has no cards
+                else if(player1.LastDrawnCard == null)
+                {
+                    //player 2 wins the game
+                    _commandLineIO.WriteFinalResult(player2.Name);
+                    break;
+                }
+                //player 2 has no cards
                 else
                 {
-                    //player 2 won the game
-                    _commandLineIO.WriteFinalResult(player2.Name);
+                    //player 1 wins the game
+                    _commandLineIO.WriteFinalResult(player1.Name);
                     break;
                 }
 
@@ -90,10 +98,14 @@ namespace CardGame
 
         /// <summary>
         /// Gets the winning player - player whose card value is more (Considering 2 players)
+        /// We can modify this function logic if we want to get winning player out of more than 2 players
         /// </summary>
         /// <returns>Returns null if both players have same card value</returns>
-        private IPlayer GetWiningPlayer(IPlayer player1, IPlayer player2)
+        private IPlayer GetWiningPlayer(List<IPlayer> players)
         {
+            var player1 = players[0];
+            var player2 = players[1];
+
             var winningCard = player1.LastDrawnCard.Compare(player2.LastDrawnCard);
             return winningCard == null ? null : player1.LastDrawnCard == winningCard ? player1 : player2;
         }

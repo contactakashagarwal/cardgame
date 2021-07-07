@@ -7,7 +7,7 @@ namespace CardGame.Interfaces
     {
         IEnumerable<Card> Cards { get; }
         int DeckSize { get; }
-        IEnumerable<Card> GetHalfDeck();
+        List<Card> GetCardsForPlayer();
         void Shuffle();
     }
 }

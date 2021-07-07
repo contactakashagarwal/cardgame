@@ -21,7 +21,7 @@ namespace CardGame.Tests
 
             Assert.AreEqual(0, player.DrawPileCount);
 
-            player.TryDrawCard(out var card);
+            player.TryDrawCard();
 
             Assert.AreEqual(0, player.DiscardPileCount);
             Assert.AreEqual(1, player.DrawPileCount);
@@ -34,20 +34,19 @@ namespace CardGame.Tests
             var cards = new List<Card> { new Card(1), new Card(2) };
             player.AssignCards(cards);
             Assert.AreEqual(2, player.DrawPileCount);
-            player.TryDrawCard(out var topCard);
+            player.TryDrawCard();
 
-            Assert.AreEqual(cards[1], topCard);
+            Assert.AreEqual(cards[1], player.LastDrawnCard);
             Assert.AreEqual(1, player.DrawPileCount);
         }
 
         [Test]
-        public void If_Player_has_no_card_in_either_of_draw_pile_and_discard_pile_then_tryDrawCard_outputs_null_and_returns_false()
+        public void If_Player_has_no_card_in_either_of_draw_pile_and_discard_pile_then_lastDrawncard_is_null()
         {
             IPlayer player = new Player("player");
-            var isCardDrawn = player.TryDrawCard(out var topCard);
+            player.TryDrawCard();
 
-            Assert.That(isCardDrawn, Is.False);
-            Assert.That(topCard, Is.Null);
+            Assert.That(player.LastDrawnCard, Is.Null);
         }
     }
 }

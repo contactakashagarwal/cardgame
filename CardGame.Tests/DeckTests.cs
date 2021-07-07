@@ -15,14 +15,14 @@ namespace CardGame.Tests
         [Test]
         public void New_deck_should_contain_40_cards_if_deck_size_is_40()
         {
-            Deck deck = new Deck(40);
+            Deck deck = new Deck(40, 2);
             Assert.AreEqual(40, deck.Cards.Count());
         }
 
         [Test]
         public void Shuffle_deck_should_shuffle_the_deck_such_that_same_cards_should_be_there_in_deck_but_with_different_order()
         {
-            Deck deck = new Deck(40);
+            Deck deck = new Deck(40, 2);
             //storing original order of deck in a new listß
             var originalDeck = new List<Card>();
             deck.Cards.ToList().ForEach(card => originalDeck.Add(card));

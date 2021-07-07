@@ -10,10 +10,12 @@ namespace CardGame.Models
     {
         private List<Card> _cards;
         private readonly int _deckSize;
+        private readonly int _numberOfPlayers;
 
-        public Deck(int deckSize)
+        public Deck(int deckSize, int numberOfPlayers)
         {
             _deckSize = deckSize;
+            _numberOfPlayers = numberOfPlayers;
             _cards = new List<Card>();
             Initialize();
 
@@ -38,23 +40,23 @@ namespace CardGame.Models
         public IEnumerable<Card> Cards => _cards;
         public int DeckSize => _deckSize;
 
-        public IEnumerable<Card> GetHalfDeck()
-        {
-            int halfDeckCount = _deckSize / 2;
-            if (_cards.Count >= halfDeckCount)
-            {
-                var halfDeck = new List<Card>();
-                halfDeck.AddRange(_cards.Take(halfDeckCount));
-                _cards.RemoveRange(0, halfDeckCount);
-                return halfDeck;
-            }
-
-            throw new Exception("Not enough cards in deck");
-        }
-
         public void Shuffle()
         {
             _cards.Shuffle();
+        }
+
+        public List<Card> GetCardsForPlayer()
+        {
+            int cardsCountForEachPlayer = _deckSize / _numberOfPlayers;
+            if(_cards.Count >= cardsCountForEachPlayer)
+            {
+                var cards = new List<Card>();
+                cards.AddRange(_cards.Take(cardsCountForEachPlayer));
+                _cards.RemoveRange(0, cardsCountForEachPlayer);
+                return cards;
+            }
+
+            throw new Exception("Not enough cards in deck");
         }
     }
 }

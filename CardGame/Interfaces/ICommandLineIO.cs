@@ -1,4 +1,6 @@
-﻿namespace CardGame.Interfaces
+﻿using System.Collections.Generic;
+
+namespace CardGame.Interfaces
 {
     public interface ICommandLineIO
     {
@@ -6,7 +8,7 @@
         void WriteLine(string message);
         void WriteIntroMessage();
         void WriteExitMessage();
-        void WriteRoundResult(IPlayer player1, IPlayer player2, IPlayer winingPlayer);
+        void WriteRoundResult(List<IPlayer> players, IPlayer winingPlayer);
         void WriteFinalResult(string winnerName);
     }
 }

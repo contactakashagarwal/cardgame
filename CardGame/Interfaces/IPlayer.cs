@@ -10,7 +10,7 @@ namespace CardGame.Interfaces
         int DrawPileCount { get;}
         int DiscardPileCount { get; }
 
-        bool TryDrawCard(out Card card);
+        void TryDrawCard();
         void AddCardsToDiscardPile(List<Card> cards);
         void AssignCards(List<Card> cards);
     }

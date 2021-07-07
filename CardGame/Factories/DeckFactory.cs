@@ -6,9 +6,9 @@ namespace CardGame.Factories
 {
     public class DeckFactory : IDeckFactory
     {
-        public IDeck Create(int deckSize)
+        public IDeck Create(int deckSize, int numberOfPlayers)
         {
-            return new Deck(deckSize);
+            return new Deck(deckSize, numberOfPlayers);
         }
     }
 }

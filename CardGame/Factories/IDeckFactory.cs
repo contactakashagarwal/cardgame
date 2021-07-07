@@ -4,6 +4,6 @@ namespace CardGame.Factories
 {
     public interface IDeckFactory
     {
-        public IDeck Create(int deckSize);
+        public IDeck Create(int deckSize, int numberOfPlayers);
     }
 }

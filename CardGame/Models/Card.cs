@@ -1,4 +1,7 @@
-﻿namespace CardGame.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+namespace CardGame.Models
 {
     public class Card
     {
@@ -11,6 +14,7 @@
 
         /// <summary>
         /// Compares value of two cards and returns the greater card
+        /// To tackle comparing multiple cards we can extend this compare logic
         /// </summary>
         /// <param name="card2"></param>
         /// <returns>Returns null if both cards have same value</returns>

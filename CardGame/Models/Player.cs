@@ -25,30 +25,24 @@ namespace CardGame.Models
         public int DiscardPileCount => _discardPile.Count;
 
         /// <summary>
-        /// Draw top card from the draw pile of player
+        /// Tries to draw top card from the draw pile of player and assign it to LastDrawnCard, assigns null if there are no cards
         /// </summary>
         /// <param name="card"></param>
-        /// <returns>True if there are cards in either Draw pile or Discard Pile, otherwise returns False</returns>
-        public bool TryDrawCard(out Card card)
+        public void TryDrawCard()
         {
             if (!IsDrawPileEmpty)
             {
-                card = PopTopCardFromDrawPile;
-                _lastDrawnCard = card;
-                return true;
+                _lastDrawnCard = PopTopCardFromDrawPile;
             }
             else if(!IsDiscardPileEmpty)
             {
                 //flush discard pile into draw pile
                 ShuffleAndFlushDiscardPile();
-                card = PopTopCardFromDrawPile;
-                _lastDrawnCard = card;
-                return true;
+                _lastDrawnCard =  PopTopCardFromDrawPile;
             }
             else
             {
-                card = null;
-                return false;
+                _lastDrawnCard = null;
             }
         }
 
