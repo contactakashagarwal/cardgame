@@ -27,9 +27,6 @@ namespace CardGame.Tests
                 .Returns(new List<Card> {cards[0], cards[1] })
                 .Returns(new List<Card> { cards[2], cards[3] });
 
-            var deckFactory = new Mock<IDeckFactory>();
-            deckFactory.Setup(df => df.Create(It.IsAny<int>())).Returns(deck.Object);
-
             var player1 = new Player("p1");
             var player2 = new Player("p2");
             
@@ -38,7 +35,7 @@ namespace CardGame.Tests
             playerFactory.Setup(f => f.Create("p2")).Returns(player2);
 
             var commandLineIO = new Mock<ICommandLineIO>();
-            var cardGame = new CardGameController(deckFactory.Object, playerFactory.Object,commandLineIO.Object, 4, 2);
+            var cardGame = new CardGameController(deck.Object, playerFactory.Object,commandLineIO.Object, 2);
             cardGame.Start("p1", "p2");
 
             //all four cards would be won by player2 and would be sitting in player's discard pile because the game has ended and he won

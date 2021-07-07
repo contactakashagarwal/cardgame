@@ -18,7 +18,7 @@ namespace CardGame.Factories
 
         public ICardGameController Create(int deckSize, int numberOfPlayers)
         {
-            return new CardGameController(_deckFactory, _playerFactory, _commandLineIO, deckSize, numberOfPlayers);
+            return new CardGameController(_deckFactory.Create(deckSize), _playerFactory, _commandLineIO, numberOfPlayers);
         }
     }
 }

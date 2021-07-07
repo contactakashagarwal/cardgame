@@ -13,7 +13,7 @@ namespace CardGame.Tests
         }
 
         [Test]
-        public void New_deck_should_contain_40_cards()
+        public void New_deck_should_contain_40_cards_if_deck_size_is_40()
         {
             Deck deck = new Deck(40);
             Assert.AreEqual(40, deck.Cards.Count());
