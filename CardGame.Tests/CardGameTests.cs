@@ -36,7 +36,7 @@ namespace CardGame.Tests
             playerFactory.Setup(f => f.Create(playerNames[1])).Returns(player2);
 
             var commandLineIO = new Mock<ICommandLineIO>();
-            var cardGame = new CardGameController(deck.Object, playerFactory.Object,commandLineIO.Object, 2);
+            var cardGame = new CardGameController(deck.Object, playerFactory.Object,commandLineIO.Object);
             cardGame.Start(playerNames);
 
             // the game ended now since player 1 has zero cards

@@ -12,21 +12,18 @@ namespace CardGame
         private readonly IDeck _deck;
         private readonly IPlayerFactory _playerFactory;
         private readonly ICommandLineIO _commandLineIO;
-        private readonly int _numberOfPlayers; // not used currently
 
-        public CardGameController(IDeck deck, IPlayerFactory playerFactory, ICommandLineIO commandLineIO, int numOfPlayers)
+        public CardGameController(IDeck deck, IPlayerFactory playerFactory, ICommandLineIO commandLineIO)
         {
             _deck = deck;
             _playerFactory = playerFactory;
-            _numberOfPlayers = numOfPlayers;
             _commandLineIO = commandLineIO;
         }
 
         /// <summary>
-        /// Initialize game for only two players
+        /// Initializes the game
         /// </summary>
-        /// <param name="player1Name"></param>
-        /// <param name="player2Name"></param>
+        /// <param name="playerNames"></param>
         public void Start(List<string> playerNames)
         {
             List<IPlayer> players = new List<IPlayer>();
