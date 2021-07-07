@@ -40,3 +40,49 @@ Covered all the Test scenarios given in the assignment and segregated them into 
   
 - CardGameTests
   - When comparing two cards of same value, winner of next round should win four cards.
+  
+  
+### Output snaps
+  
+      Welcome To cards game !!!
+      Enter player 1 name - akash
+      Enter player 2 name - palavi
+      The Game Begins !!!
+
+      akash (Draw pile : 5 cards, Discard Pile : 2 cards) : 3
+      palavi (Draw pile : 5 cards, Discard Pile : 0 cards) : 2
+      akash wins this round
+
+      Press Enter to continue to next round, or type 'exit' if you want to quit
+
+      akash (Draw pile : 4 cards, Discard Pile : 2 cards) : 2
+      palavi (Draw pile : 4 cards, Discard Pile : 0 cards) : 2
+      No winner in this round
+
+      Press Enter to continue to next round, or type 'exit' if you want to quit
+
+      akash (Draw pile : 3 cards, Discard Pile : 2 cards) : 1
+      palavi (Draw pile : 3 cards, Discard Pile : 4 cards) : 2
+      palavi wins this round
+
+      Press Enter to continue to next round, or type 'exit' if you want to quit
+
+      akash (Draw pile : 2 cards, Discard Pile : 2 cards) : 1
+      palavi (Draw pile : 2 cards, Discard Pile : 4 cards) : 1
+      No winner in this round
+
+      Press Enter to continue to next round, or type 'exit' if you want to quit
+
+      ...
+      ...
+      ...
+
+      akash (Draw pile : 2 cards, Discard Pile : 10 cards) : 2
+      palavi (Draw pile : 0 cards, Discard Pile : 0 cards) : 1
+      akash wins this round
+
+      Press Enter to continue to next round, or type 'exit' if you want to quit
+
+
+      akash wins the game!
+      Thanks for playing !!!
