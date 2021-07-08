@@ -2,6 +2,9 @@
 
 namespace CardGame.Interfaces
 {
+    /// <summary>
+    /// Responsible for all console input output operations
+    /// </summary>
     public interface ICommandLineIO
     {
         string ReadLine(string message);

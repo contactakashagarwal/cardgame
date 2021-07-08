@@ -9,8 +9,8 @@ namespace CardGame
     class Program
     {
         private static readonly ICardGameControllerFactory _cardGameFactory;
-        private const int _deckSize = 12; //should be in multiple of 4
-        private const int numOfPlayers = 2; 
+        private const int _deckSize = 40; //should be in multiple of 4
+        private const int numOfPlayers = 2; //currently this game is supported for only 2 players
 
         static Program()
         {

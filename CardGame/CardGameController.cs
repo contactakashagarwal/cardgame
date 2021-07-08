@@ -36,22 +36,19 @@ namespace CardGame
             });
 
             _commandLineIO.WriteIntroMessage();
-            BeginGame(players);
+            BeginGame(players[0], players[1]) ;
             _commandLineIO.WriteExitMessage();
         }
 
         /// <summary>
         /// Begin game, currently taking into consideration only first 2 players are playing
         /// </summary>
-        /// <param name="players"></param>
-        private void BeginGame(List<IPlayer> players)
+        /// <param name="player1"></param>
+        /// <param name="player2"></param>
+        private void BeginGame(IPlayer player1, IPlayer player2)
         {
             //cards that are there on the board to be picked by the winner
             var boardCards = new List<Card>();
-            
-            //taking first two players only for now
-            var player1 = players[0];
-            var player2 = players[1];
             var playersInGame = new List<IPlayer> { player1, player2 };
 
             while (true)
@@ -60,7 +57,7 @@ namespace CardGame
                 player2.TryDrawCard();
 
                 //both players have cards
-                if(player1.LastDrawnCard != null && player2.LastDrawnCard != null)
+                if (player1.LastDrawnCard != null && player2.LastDrawnCard != null)
                 {
                     boardCards.AddRange(new List<Card> { player1.LastDrawnCard, player2.LastDrawnCard });
                     var winningPlayer = GetWiningPlayer(playersInGame);
@@ -74,7 +71,7 @@ namespace CardGame
                     _commandLineIO.WriteRoundResult(playersInGame, winningPlayer);
                 }
                 //player 1 has no cards
-                else if(player1.LastDrawnCard == null)
+                else if (player1.LastDrawnCard == null)
                 {
                     //player 2 wins the game
                     _commandLineIO.WriteFinalResult(player2.Name);
