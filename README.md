@@ -15,8 +15,8 @@ Card Game currently designed for 2 players. In this game each player gets a 20 c
 - CardGameController : Responsible for Controling the game logic and flow. Just Call Start method and game will begin.
 - CommandLineIO : Responsible for all command line input output operations. Also takes care of the messages and formats to display.
 - Card : Responsible for maintaining card state
-- Deck : Responsible for maintaning complete deck state (List<Card>). It has configurable deck size and has behaviour to Shuffle Shuffle deck and Remove and Get Half of the cards from deck to be given to each player. 
-- Player : Responsible for maintaining player state (Name, Draw pile, Discard Pile). Player can TryDrawCard from his pile based on game logic. It can also take cards from GameController before the game begins. 
+- Deck : Responsible for maintaning complete deck state (List of Cards). It has configurable deck size and has behaviour to Shuffle the deck and Remove and Get propotionate cards from the deck to be distributed to each player in game. 
+- Player : Responsible for maintaining player state (Name, Draw pile, Discard Pile). Player can TryDrawCard from his pile based on game logic. It can also take cards from GameController before the game begins. TryDrawCard will remove the top card from draw pile and move its reference to LastDrawnCard. If there are no cards left to draw then LastDrawnCard will be null.
 - Utility.ListExtensions : Added extension to Shuffle an IList Collection using **Fisher yates Shuffle Algorithm**.
 - Factories : Responsible for creating objects for different components.
 - Interfaces : Holds behaviour spec for different components.
