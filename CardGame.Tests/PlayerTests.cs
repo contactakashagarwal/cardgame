@@ -28,7 +28,7 @@ namespace CardGame.Tests
         }
 
         [Test]
-        public void If_Player_has_card_in_draw_pile_then_top_card_from_draw_pile_is_returned()
+        public void If_Player_has_card_in_draw_pile_then_top_card_from_draw_pile_is_poped_and_assigned_to_LastDrawnCard()
         {
             IPlayer player = new Player("player");
             var cards = new List<Card> { new Card(1), new Card(2) };
